@@ -80,32 +80,32 @@ const getCategoryController = async (req, res) => {
   }
 };
 
-const getCategoryController = async (req, res) => {
-  try {
-    const categories = await categoryModel
-      .find({})
-      .lean() // returns plain objects for performance
-      .select("name slug"); // only return required fields (customize as needed)
+// const getCategoryController = async (req, res) => {
+//   try {
+//     const categories = await categoryModel
+//       .find({})
+//       .lean() // returns plain objects for performance
+//       .select("name slug"); // only return required fields (customize as needed)
 
-    if (!categories || categories.length === 0) {
-      return res.status(404).send({
-        success: false,
-        message: "No categories found",
-      });
-    }
+//     if (!categories || categories.length === 0) {
+//       return res.status(404).send({
+//         success: false,
+//         message: "No categories found",
+//       });
+//     }
 
-    return res.status(200).send({
-      success: true,
-      message: "All categories",
-      categories,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
+//     return res.status(200).send({
+//       success: true,
+//       message: "All categories",
+//       categories,
+//     });
+//   } catch (error) {
+//     return res.status(500).json({
+//       success: false,
+//       message: error.message,
+//     });
+//   }
+// };
 
 
 const getCategoryByIdController = async (req, res) => {
