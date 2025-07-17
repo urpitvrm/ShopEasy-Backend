@@ -57,19 +57,47 @@ const updateCategoryController = async (req, res) => {
   }
 };
 
+// const getCategoryController = async (req, res) => {
+//   try {
+//     const categories = await categoryModel.find({});
+//     if (!categories || categories.length === 0) {
+//       return res.status(404).send({
+//         success: false,
+//         message: "No Categories Found",
+//       });
+//     }
+
+//     return res.status(200).send({
+//       success: true,
+//       message: "All Categories",
+//       categories,
+//     });
+//   } catch (error) {
+//     return res.status(500).json({
+//       success: false,
+//       message: error.message,
+//     });
+//   }
+// };
+
+
 const getCategoryController = async (req, res) => {
   try {
-    const categories = await categoryModel.find({});
+    const categories = await categoryModel
+      .find({})
+      .lean() // returns plain objects for performance
+      .select("name slug"); // only return required fields (customize as needed)
+
     if (!categories || categories.length === 0) {
       return res.status(404).send({
         success: false,
-        message: "No Categories Found",
+        message: "No categories found",
       });
     }
 
     return res.status(200).send({
       success: true,
-      message: "All Categories",
+      message: "All categories",
       categories,
     });
   } catch (error) {
@@ -79,6 +107,7 @@ const getCategoryController = async (req, res) => {
     });
   }
 };
+
 
 const getCategoryByIdController = async (req, res) => {
   try {
