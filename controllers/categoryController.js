@@ -57,29 +57,28 @@ const updateCategoryController = async (req, res) => {
   }
 };
 
-// const getCategoryController = async (req, res) => {
-//   try {
-//     const categories = await categoryModel.find({});
-//     if (!categories || categories.length === 0) {
-//       return res.status(404).send({
-//         success: false,
-//         message: "No Categories Found",
-//       });
-//     }
+const getCategoryController = async (req, res) => {
+  try {
+    const categories = await categoryModel.find({});
+    if (!categories || categories.length === 0) {
+      return res.status(404).send({
+        success: false,
+        message: "No Categories Found",
+      });
+    }
 
-//     return res.status(200).send({
-//       success: true,
-//       message: "All Categories",
-//       categories,
-//     });
-//   } catch (error) {
-//     return res.status(500).json({
-//       success: false,
-//       message: error.message,
-//     });
-//   }
-// };
-
+    return res.status(200).send({
+      success: true,
+      message: "All Categories",
+      categories,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
 
 const getCategoryController = async (req, res) => {
   try {
